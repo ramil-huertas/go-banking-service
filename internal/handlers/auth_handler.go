@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/takadao/banking/internal/middleware"
-	"github.com/takadao/banking/internal/service"
+	"takadao/banking/internal/middleware"
+	"takadao/banking/internal/service"
 )
 
 // AuthHandler handles authentication related requests

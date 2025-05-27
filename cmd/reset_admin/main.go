@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/takadao/banking/internal/config"
-	"github.com/takadao/banking/internal/models"
+	"takadao/banking/internal/config"
+	"takadao/banking/internal/models"
 )
 
 func main() {

@@ -2,7 +2,7 @@ package repository
 
 import (
 	"github.com/google/uuid"
-	"github.com/takadao/banking/internal/models"
+	"takadao/banking/internal/models"
 	"gorm.io/gorm"
 )
 

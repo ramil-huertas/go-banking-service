@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/takadao/banking/internal/handlers"
-	"github.com/takadao/banking/internal/middleware"
+	"takadao/banking/internal/handlers"
+	"takadao/banking/internal/middleware"
 )
 
 // SetupRouter configures all the routes for the application

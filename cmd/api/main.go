@@ -6,13 +6,13 @@ import (
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/takadao/banking/docs"
-	"github.com/takadao/banking/internal/config"
-	"github.com/takadao/banking/internal/handlers"
-	"github.com/takadao/banking/internal/middleware"
-	"github.com/takadao/banking/internal/repository"
-	"github.com/takadao/banking/internal/routes"
-	"github.com/takadao/banking/internal/service"
+	"takadao/banking/docs"
+	"takadao/banking/internal/config"
+	"takadao/banking/internal/handlers"
+	"takadao/banking/internal/middleware"
+	"takadao/banking/internal/repository"
+	"takadao/banking/internal/routes"
+	"takadao/banking/internal/service"
 )
 
 // @title           Banking API

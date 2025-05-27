@@ -10,7 +10,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"github.com/takadao/banking/internal/models"
+	"takadao/banking/internal/models"
 )
 
 func setupTestRouter(middleware *AuthMiddleware) *gin.Engine {

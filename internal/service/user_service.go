@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
-	"github.com/takadao/banking/internal/models"
-	"github.com/takadao/banking/internal/repository"
+	"takadao/banking/internal/models"
+	"takadao/banking/internal/repository"
 )
 
 type UserService struct {

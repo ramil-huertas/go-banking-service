@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/takadao/banking/internal/models"
+	"takadao/banking/internal/models"
 )
 
 // AuthMiddleware handles JWT authentication

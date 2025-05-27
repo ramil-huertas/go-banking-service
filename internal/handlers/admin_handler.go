@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/takadao/banking/internal/service"
+	"takadao/banking/internal/service"
 )
 
 // AdminHandler handles admin related requests

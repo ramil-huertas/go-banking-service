@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/takadao/banking/internal/auth"
-	"github.com/takadao/banking/internal/models"
-	"github.com/takadao/banking/internal/repository"
-	"github.com/takadao/banking/internal/service"
+	"takadao/banking/internal/auth"
+	"takadao/banking/internal/models"
+	"takadao/banking/internal/repository"
+	"takadao/banking/internal/service"
 )
 
 // UserHandler handles user-related requests
