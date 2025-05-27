@@ -15,6 +15,13 @@ RUN go mod download && go mod tidy
 # Copy source code
 COPY . .
 
+# Create start script
+RUN echo '#!/bin/sh\n\
+echo "Running database migrations..."\n\
+./main migrate\n\
+echo "Starting application..."\n\
+exec ./main' > /app/start.sh && chmod +x /app/start.sh
+
 # Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build -o main ./cmd/api
 
@@ -26,20 +33,14 @@ WORKDIR /app
 # Install runtime dependencies
 RUN apk add --no-cache ca-certificates tzdata
 
-# Copy the binary from builder
+# Copy the binary and start script from builder
 COPY --from=builder /app/main .
+COPY --from=builder /app/start.sh .
 COPY --from=builder /app/.env.example ./.env
 COPY --from=builder /app/migrations ./migrations
-
-# Create a script to run migrations and start the app
-RUN echo '#!/bin/sh\n\
-echo "Running database migrations..."\n\
-./main migrate\n\
-echo "Starting application..."\n\
-exec ./main' > /app/start.sh && chmod +x /app/start.sh
 
 # Expose port
 EXPOSE 8080
 
 # Run the application
-CMD ["/app/start.sh"] 
+CMD ["./start.sh"] 
