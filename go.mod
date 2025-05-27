@@ -1,8 +1,6 @@
 module takadao/banking
 
-go 1.23
-
-toolchain go1.24.3
+go 1.22
 
 require (
 	github.com/gin-gonic/gin v1.9.1
