@@ -11,7 +11,11 @@ import (
 	"takadao/banking/internal/routes"
 	"takadao/banking/internal/service"
 
+	_ "takadao/banking/docs" // This will be generated
+
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @title           Banking API
@@ -79,6 +83,9 @@ func main() {
 			"status": "ok",
 		})
 	})
+
+	// Add Swagger documentation
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Configure trusted proxies
 	router.SetTrustedProxies([]string{"127.0.0.1"})
