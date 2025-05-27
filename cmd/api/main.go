@@ -13,6 +13,7 @@ import (
 
 	_ "takadao/banking/docs" // This will be generated
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -30,7 +31,7 @@ import (
 // @license.name  Apache 2.0
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host      localhost:8080
+// @host      takadao-api.onrender.com
 // @BasePath  /api/v1
 
 // @securityDefinitions.apikey BearerAuth
@@ -76,6 +77,16 @@ func main() {
 
 	// Setup router
 	router := routes.SetupRouter(authHandler, userHandler, transactionHandler, adminHandler, authMiddleware)
+
+	// Configure CORS
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * 60 * 60, // 12 hours
+	}))
 
 	// Add health check endpoint
 	router.GET("/ping", func(c *gin.Context) {
