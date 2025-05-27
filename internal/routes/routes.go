@@ -1,9 +1,10 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
 	"takadao/banking/internal/handlers"
 	"takadao/banking/internal/middleware"
+
+	"github.com/gin-gonic/gin"
 )
 
 // SetupRouter configures all the routes for the application
@@ -11,6 +12,7 @@ func SetupRouter(
 	authHandler *handlers.AuthHandler,
 	userHandler *handlers.UserHandler,
 	transactionHandler *handlers.TransactionHandler,
+	adminHandler *handlers.AdminHandler,
 	authMiddleware *middleware.AuthMiddleware,
 ) *gin.Engine {
 	router := gin.Default()
@@ -41,26 +43,14 @@ func SetupRouter(
 		protected.Use(authMiddleware.RequireAuth())
 		{
 			// User routes
-			user := protected.Group("/users")
+			users := protected.Group("/users")
 			{
-				user.GET("/me", userHandler.GetMe)
-				user.PUT("/me", userHandler.UpdateMe)
-				user.GET("/balance", userHandler.GetBalances)
+				users.GET("/me", userHandler.GetMe)
+				users.PUT("/me", userHandler.UpdateMe)
+				users.GET("/balance", userHandler.GetBalances)
 			}
 
-			// Admin routes
-			admin := protected.Group("/admin")
-			admin.Use(authMiddleware.RequireAdmin())
-			{
-				admin.GET("/users", userHandler.ListUsers)
-				admin.GET("/users/:id", userHandler.GetUser)
-				admin.PUT("/users/:id", userHandler.UpdateUser)
-				admin.DELETE("/users/:id", userHandler.DeleteUser)
-				admin.GET("/transactions", transactionHandler.ListTransactions)
-				admin.GET("/transactions/:id", transactionHandler.GetTransaction)
-			}
-
-			// Transaction routes (for both users and admins)
+			// Transaction routes
 			transactions := protected.Group("/transactions")
 			{
 				transactions.GET("/me", transactionHandler.ListMyTransactions)
@@ -68,6 +58,21 @@ func SetupRouter(
 				transactions.POST("/deposit", transactionHandler.Deposit)
 				transactions.POST("/withdraw", transactionHandler.Withdraw)
 				transactions.POST("/transfer", transactionHandler.Transfer)
+			}
+
+			// Admin routes
+			admin := protected.Group("/admin")
+			admin.Use(authMiddleware.RequireAdmin())
+			{
+				// User management
+				admin.GET("/users", userHandler.ListUsers)
+				admin.GET("/users/:id", userHandler.GetUser)
+				admin.PUT("/users/:id", userHandler.UpdateUser)
+				admin.DELETE("/users/:id", userHandler.DeleteUser)
+
+				// Transaction management
+				admin.GET("/transactions", adminHandler.ListAllTransactions)
+				admin.GET("/transactions/:id", transactionHandler.GetTransaction)
 			}
 		}
 	}
