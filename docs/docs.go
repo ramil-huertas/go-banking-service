@@ -1356,7 +1356,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "takadao-api.onrender.com",
+	Host:             "takadao-banking-api.onrender.com",
 	BasePath:         "/api/v1",
 	Schemes:          []string{},
 	Title:            "Banking API",

@@ -88,11 +88,11 @@ go run cmd/api/main.go
 swag init -g cmd/api/main.go -o docs
 ```
 
-The API will be available at `http://takadao-api.onrender.com`
+The API will be available at `http://takadao-banking-api.onrender.com`
 
 ## API Documentation (Swagger)
 
-- Access Swagger UI at: [http://takadao-api.onrender.com/swagger/index.html](http://takadao-api.onrender.com/swagger/index.html)
+- Access Swagger UI at: [http://takadao-banking-api.onrender.com/swagger/index.html](http://takadao-banking-api.onrender.com/swagger/index.html)
 - To authorize, click "Authorize" and enter your JWT as: `Bearer <token>`
 
 ## API Endpoints

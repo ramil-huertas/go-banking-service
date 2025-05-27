@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "takadao-api.onrender.com",
+    "host": "takadao-banking-api.onrender.com",
     "basePath": "/api/v1",
     "paths": {
         "/admin/transactions": {
