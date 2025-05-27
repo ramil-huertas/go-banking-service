@@ -29,9 +29,17 @@ RUN apk add --no-cache ca-certificates tzdata
 # Copy the binary from builder
 COPY --from=builder /app/main .
 COPY --from=builder /app/.env.example ./.env
+COPY --from=builder /app/migrations ./migrations
+
+# Create a script to run migrations and start the app
+RUN echo '#!/bin/sh\n\
+echo "Running database migrations..."\n\
+./main migrate\n\
+echo "Starting application..."\n\
+exec ./main' > /app/start.sh && chmod +x /app/start.sh
 
 # Expose port
 EXPOSE 8080
 
 # Run the application
-CMD ["./main"] 
+CMD ["/app/start.sh"] 
